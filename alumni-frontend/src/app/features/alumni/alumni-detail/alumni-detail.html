@@ -1,0 +1,53 @@
+<!-- src/app/features/alumni/alumni-detail/alumni-detail.component.html -->
+<div class="container py-4">
+  <a routerLink="/alumni" class="btn btn-link">← Retour</a>
+
+  <div class="alert alert-danger" *ngIf="error">{{ error }}</div>
+  <div class="text-center py-4" *ngIf="loading">
+    <div class="spinner-border" role="status"></div>
+  </div>
+
+  <ng-container *ngIf="!loading && data as a">
+    <div class="row g-4">
+      <div class="col-md-6">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <h3 class="card-title">{{ displayName(a) }}</h3>
+            <div class="text-muted mb-2">{{ a.formation }} • {{ a.promotion }}</div>
+
+            <dl class="row small mb-0">
+              <dt class="col-sm-4">LinkedIn</dt>
+              <dd class="col-sm-8">
+                <a *ngIf="a.linkedin" [href]="a.linkedin" target="_blank" rel="noopener">Profil</a>
+                <span *ngIf="!a.linkedin">—</span>
+              </dd>
+
+              <dt class="col-sm-4">Email</dt>
+              <dd class="col-sm-8">{{ a.email || '—' }}</dd>
+
+              <dt class="col-sm-4">Téléphone</dt>
+              <dd class="col-sm-8">{{ a.telephone || '—' }}</dd>
+
+              <dt class="col-sm-4">Contacté par</dt>
+              <dd class="col-sm-8">{{ a.contacte_par || '—' }}</dd>
+
+              <dt class="col-sm-4">Accord ITV</dt>
+              <dd class="col-sm-8">{{ a.accord_itv ? 'Oui' : 'Non' }}</dd>
+
+              <dt class="col-sm-4">Date passage</dt>
+              <dd class="col-sm-8">{{ a.date_passage || '—' }}</dd>
+
+              <dt class="col-sm-4">Date rencontre</dt>
+              <dd class="col-sm-8">{{ a.date_rencontre || '—' }}</dd>
+            </dl>
+
+            <hr>
+            <h6>Parcours / témoignage</h6>
+            <p [innerText]="a.temoignage_parcours || a.profil || '—'"></p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </ng-container>
+</div>

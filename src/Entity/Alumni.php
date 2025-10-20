@@ -54,7 +54,7 @@ class Alumni
     private ?\DateTimeInterface $dateRencontre = null;
 
     // ---- Getters / Setters (génère avec maker:entity si tu veux) ----
-    public function getId(): ?int { return $id ?? null; }
+    public function getId(): ?int{return $this->id; }
     public function getNom(): string { return $this->nom; }
     public function setNom(string $nom): self { $this->nom = $nom; return $this; }
 
