@@ -1,4 +1,4 @@
-<!-- src/app/features/alumni/alumni-detail/alumni-detail.component.html -->
+<!-- src/app/features/alumni/alumni-detail/alumni-detail.html -->
 <div class="container py-4">
   <a routerLink="/alumni" class="btn btn-link">← Retour</a>
 
@@ -8,46 +8,62 @@
   </div>
 
   <ng-container *ngIf="!loading && data as a">
-    <div class="row g-4">
-      <div class="col-md-6">
-        <div class="card shadow-sm">
-          <div class="card-body">
-            <h3 class="card-title">{{ displayName(a) }}</h3>
-            <div class="text-muted mb-2">{{ a.formation }} • {{ a.promotion }}</div>
+    <section class="alumni-detail-section">
+      <div class="row justify-content-center">
+        <div class="col-lg-7 col-md-9">
+          <div class="flipcard">
+            <div class="flipcard-inner">
 
-            <dl class="row small mb-0">
-              <dt class="col-sm-4">LinkedIn</dt>
-              <dd class="col-sm-8">
-                <a *ngIf="a.linkedin" [href]="a.linkedin" target="_blank" rel="noopener">Profil</a>
-                <span *ngIf="!a.linkedin">—</span>
-              </dd>
+              <!-- FACE -->
+              <div class="cover" [ngClass]="itemClass(a)">
+                <!-- Badge avatar (initiales) -->
+                <div class="avatar-badge" aria-hidden="true">{{ initials(a) }}</div>
 
-              <dt class="col-sm-4">Email</dt>
-              <dd class="col-sm-8">{{ a.email || '—' }}</dd>
+                <!-- Nom -->
+                <h1 class="title">{{ displayName(a) }}</h1>
 
-              <dt class="col-sm-4">Téléphone</dt>
-              <dd class="col-sm-8">{{ a.telephone || '—' }}</dd>
+                <!-- Formation • Promotion -->
+                <div class="meta">
+                  {{ a.formation || 'Formation —' }}
+                  <span class="dot">•</span>
+                  {{ a.promotion || '—' }}
+                </div>
 
-              <dt class="col-sm-4">Contacté par</dt>
-              <dd class="col-sm-8">{{ a.contacte_par || '—' }}</dd>
+                <!-- Actions rapides (face) -->
+              </div>
+              <!-- /FACE -->
 
-              <dt class="col-sm-4">Accord ITV</dt>
-              <dd class="col-sm-8">{{ a.accord_itv ? 'Oui' : 'Non' }}</dd>
+              <!-- DOS (désormais frère de .cover) -->
+              <div class="card-back">
+                <div class="back-inner">
+                  <dl class="data">
+                    <div>
+                      <dt>Nom</dt>
+                      <dd>{{ a.nom || '—' }}</dd>
+                    </div>
+                    <div>
+                      <dt>Prénom</dt>
+                      <dd>{{ a.prenom || '—' }}</dd>
+                    </div>
+                  </dl>
 
-              <dt class="col-sm-4">Date passage</dt>
-              <dd class="col-sm-8">{{ a.date_passage || '—' }}</dd>
+                  <div class="back-actions">
+                    <a *ngIf="a.linkedin" class="btn-solid" [href]="a.linkedin" target="_blank" rel="noopener">Voir le profil LinkedIn</a>
+                    <a *ngIf="a.email" class="btn-outline" [href]="'mailto:'+a.email">Contacter</a>
+                  </div>
 
-              <dt class="col-sm-4">Date rencontre</dt>
-              <dd class="col-sm-8">{{ a.date_rencontre || '—' }}</dd>
-            </dl>
+                  <div class="story" *ngIf="a.temoignage_parcours || a.profil">
+                    <h6>Parcours / témoignage</h6>
+                    <p [innerText]="a.temoignage_parcours || a.profil"></p>
+                  </div>
+                </div>
+              </div>
+              <!-- /DOS -->
 
-            <hr>
-            <h6>Parcours / témoignage</h6>
-            <p [innerText]="a.temoignage_parcours || a.profil || '—'"></p>
-          </div>
+            </div> <!-- /.flipcard-inner -->
+          </div> <!-- /.flipcard -->
         </div>
       </div>
-
-    </div>
+    </section>
   </ng-container>
 </div>

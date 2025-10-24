@@ -1,4 +1,4 @@
-// src/app/features/alumni/alumni-detail/alumni-detail.ts
+// src/app/features/alumni/alumni-detail/alumni-detail.component.ts
 import { Component, OnInit, inject, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterLink } from '@angular/router';
@@ -18,6 +18,7 @@ type AlumniDto = {
   standalone: true,
   imports: [CommonModule, RouterLink],
   templateUrl: './alumni-detail.html',
+  styleUrls: ['./alumni-detail.css'],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AlumniDetailComponent implements OnInit {
@@ -37,4 +38,18 @@ export class AlumniDetailComponent implements OnInit {
   }
 
   displayName(a: AlumniDto) { return `${a.prenom ?? ''} ${a.nom ?? ''}`.trim(); }
+
+  itemClass(a: AlumniDto) {
+    // Donne un style de couverture différent selon l’ID (3 variantes)
+    const n = (a.id ?? 0) % 3;
+    return ['item-a', 'item-b', 'item-c'][n];
+  }
+
+  initials(a: AlumniDto) {
+    const p = (a.prenom || '').trim();
+    const n = (a.nom || '').trim();
+    const i1 = p ? p[0] : '';
+    const i2 = n ? n[0] : '';
+    return (i1 + i2).toUpperCase() || 'AL';
+  }
 }
