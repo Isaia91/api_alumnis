@@ -5,17 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a91645ab-0b92-467b-a983-cecfa6cb2c2a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/alumni-frontend/proxy.conf.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/alumni-frontend/src/app/core/models/alumni.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/alumni-frontend/src/app/core/services/alumni.service.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config/packages/nelmio_cors.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/alumni-frontend/src/app/features/alumni/alumni-detail/alumni-detail.css" beforeDir="false" afterPath="$PROJECT_DIR$/alumni-frontend/src/app/features/alumni/alumni-detail/alumni-detail.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/alumni-frontend/src/app/features/alumni/alumni-detail/alumni-detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/alumni-frontend/src/app/features/alumni/alumni-detail/alumni-detail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/alumni-frontend/src/app/features/alumni/alumni-detail/alumni-detail.ts" beforeDir="false" afterPath="$PROJECT_DIR$/alumni-frontend/src/app/features/alumni/alumni-detail/alumni-detail.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db_data/aria_log.00000001" beforeDir="false" afterPath="$PROJECT_DIR$/db_data/aria_log.00000001" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db_data/aria_log_control" beforeDir="false" afterPath="$PROJECT_DIR$/db_data/aria_log_control" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db_data/ib_logfile0" beforeDir="false" afterPath="$PROJECT_DIR$/db_data/ib_logfile0" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db_data/ib_buffer_pool" beforeDir="false" afterPath="$PROJECT_DIR$/db_data/ib_buffer_pool" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db_data/ibdata1" beforeDir="false" afterPath="$PROJECT_DIR$/db_data/ibdata1" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db_data/ibtmp1" beforeDir="false" afterPath="$PROJECT_DIR$/db_data/ibtmp1" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Alumni.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Alumni.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db_data/ibtmp1" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
