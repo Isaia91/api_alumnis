@@ -1,7 +1,7 @@
 [build]
   base = "alumni-frontend"
   command = "npm ci && npx ng build --configuration production"
-  publish = "dist/alumni-frontend" # ou "dist/alumni-frontend/browser"
+  publish = "dist/alumni-frontend"
 
 [build.environment]
   NODE_VERSION = "20"
