@@ -14,51 +14,76 @@
           <div class="flipcard">
             <div class="flipcard-inner">
 
-              <!-- FACE -->
+              <!-- FACE AVANT -->
               <div class="cover" [ngClass]="itemClass(a)">
-                <!-- Badge avatar (initiales) -->
+                <!-- Avatar avec initiales -->
                 <div class="avatar-badge" aria-hidden="true">{{ initials(a) }}</div>
 
-                <!-- Nom -->
-                <h1 class="title">{{ displayName(a) }}</h1>
+                <!-- Contenu principal (aligné en bas) -->
+                <div class="cover-content">
+                  <h1 class="title">{{ displayName(a) }}</h1>
 
-                <!-- Formation • Promotion -->
-                <div class="meta">
-                  {{ a.formation || 'Formation —' }}
-                  <span class="dot">•</span>
-                  {{ a.promotion || '—' }}
+                  <div class="meta-stack">
+                    <span class="line">
+                      {{ a.promotionType || 'Formation —' }}
+                      <span class="dot">•</span>
+                      {{ a.graduationYear || '—' }}
+                    </span>
+                  </div>
                 </div>
-
-                <!-- Actions rapides (face) -->
               </div>
-              <!-- /FACE -->
+              <!-- /FACE AVANT -->
 
-              <!-- DOS (désormais frère de .cover) -->
+              <!-- FACE ARRIÈRE -->
               <div class="card-back">
                 <div class="back-inner">
                   <dl class="data">
                     <div>
                       <dt>Nom</dt>
-                      <dd>{{ a.nom || '—' }}</dd>
+                      <dd>{{ a.name || '—' }}</dd>
                     </div>
                     <div>
                       <dt>Prénom</dt>
-                      <dd>{{ a.prenom || '—' }}</dd>
+                      <dd>{{ a.firstname || '—' }}</dd>
+                    </div>
+                    <div *ngIf="a.position || a.company">
+                      <dt>Poste</dt>
+                      <dd>
+                        <span *ngIf="a.position">{{ a.position }}</span>
+                        <span *ngIf="a.position && a.company"> — </span>
+                        <span *ngIf="a.company">{{ a.company }}</span>
+                      </dd>
+                    </div>
+                    <div *ngIf="a.city || a.country">
+                      <dt>Localisation</dt>
+                      <dd>{{ a.city }} <span *ngIf="a.country">({{ a.country }})</span></dd>
+                    </div>
+                    <div>
+                      <dt>Formation</dt>
+                      <dd>{{ a.promotionType || '—' }}</dd>
+                    </div>
+                    <div>
+                      <dt>Promotion</dt>
+                      <dd>{{ a.graduationYear || '—' }}</dd>
                     </div>
                   </dl>
 
                   <div class="back-actions">
-                    <a *ngIf="a.linkedin" class="btn-solid" [href]="a.linkedin" target="_blank" rel="noopener">Voir le profil LinkedIn</a>
-                    <a *ngIf="a.email" class="btn-outline" [href]="'mailto:'+a.email">Contacter</a>
+                    <a *ngIf="a.linkedin" class="btn-solid" [href]="a.linkedin" target="_blank" rel="noopener">
+                      Voir le profil LinkedIn
+                    </a>
+                    <a *ngIf="a.email" class="btn-outline" [href]="'mailto:'+a.email">
+                      Contacter
+                    </a>
                   </div>
 
-                  <div class="story" *ngIf="a.temoignage_parcours || a.profil">
-                    <h6>Parcours / témoignage</h6>
-                    <p [innerText]="a.temoignage_parcours || a.profil"></p>
+                  <div class="story" *ngIf="a.biography">
+                    <h6>Parcours</h6>
+                    <p [innerText]="a.biography"></p>
                   </div>
                 </div>
               </div>
-              <!-- /DOS -->
+              <!-- /FACE ARRIÈRE -->
 
             </div> <!-- /.flipcard-inner -->
           </div> <!-- /.flipcard -->

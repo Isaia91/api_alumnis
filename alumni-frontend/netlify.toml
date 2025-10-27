@@ -1,0 +1,13 @@
+[build]
+  base = "alumni-frontend"
+  command = "npm ci && npx ng build --configuration production"
+  publish = "alumni-frontend/dist/alumni-frontend"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+# SPA: router Angular
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

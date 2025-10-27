@@ -247,3 +247,28 @@ model-viewer { display: block; }
     transition: none !important;
   }
 }
+
+
+/* pile des infos en bas */
+.cover .meta-stack{
+  position: absolute;
+  left: 40px; right: 40px; bottom: 24px;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  color: rgba(255,255,255,.95);
+  font-weight: 300;
+  font-size: 1rem;
+  letter-spacing: .2px;
+  transform-style: preserve-3d;
+  transition: ease all 1.2s;
+}
+.cover .meta-stack .line { transform: translateZ(0px); }
+.cover .meta-stack .dot { opacity:.8; margin: 0 .35rem; }
+
+/* remonte un peu le titre pour laisser la pile respirer */
+.cover .title { bottom: 110px; } /* avant: 88px */
+
+/* optionnel: ne plus utiliser l’ancien .meta absolu */
+.cover .meta { position: static; }

@@ -4,16 +4,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { QRCodeComponent } from 'angularx-qrcode';
-import { HttpClient } from '@angular/common/http';
-
-type AlumniDto = {
-  id: number; nom: string; prenom: string;
-  linkedin?: string|null; promotion?: string|null; formation?: string|null;
-  profil?: string|null; email?: string|null; telephone?: string|null;
-  contacte_par?: string|null; accord_itv?: boolean;
-  date_passage?: string|null; temoignage_parcours?: string|null;
-  date_rencontre?: string|null;
-};
+import { AlumniService, Alumni } from '../../../core/services/alumni.service';
 
 @Component({
   selector: 'app-alumni-list',
@@ -22,35 +13,38 @@ type AlumniDto = {
   templateUrl: './alumni-list.html'
 })
 export class AlumniListComponent implements OnInit {
-  private http = inject(HttpClient);
-  items: AlumniDto[] = [];
-  loading = false;
-  error: string | null = null;
+  private alumniSvc = inject(AlumniService);
 
-  // <-- simple propriété string (pas un signal)
+  items: Alumni[] = [];
+  loading = false;         // on les garde si tu veux le même template
+  error: string | null = null;
   search = '';
 
   ngOnInit() { this.load(); }
 
   load() {
-    this.loading = true;
-    this.error = null;
-    this.http.get<AlumniDto[]>('/api/alumnis').subscribe({
-      next: res => { this.items = res; this.loading = false; },
-      error: _ => { this.error = 'Erreur de chargement'; this.loading = false; }
-    });
+    // plus de HTTP, plus d'API : lecture synchronisée
+    try {
+      this.loading = true;
+      this.items = this.alumniSvc.getAll();
+      this.error = null;
+    } catch {
+      this.error = 'Erreur de chargement des données intégrées';
+    } finally {
+      this.loading = false;
+    }
   }
 
-  filtered(): AlumniDto[] {
+  filtered(): Alumni[] {
     const s = this.search.toLowerCase().trim();
     if (!s) return this.items;
     return this.items.filter(a =>
-      [a.nom, a.prenom, a.formation, a.promotion, a.profil]
+      [a.name, a.firstname, a.position, a.company, a.promotionType, a.city, a.country]
         .some(v => (v ?? '').toLowerCase().includes(s))
     );
   }
 
-  displayName(a: AlumniDto) { return `${a.prenom ?? ''} ${a.nom ?? ''}`.trim(); }
+  displayName(a: Alumni) { return `${a.firstname ?? ''} ${a.name ?? ''}`.trim(); }
 
-  qrUrl(a: AlumniDto) { return `${location.origin}/alumni/${a.id}`; }
+  qrUrl(a: Alumni) { return `${location.origin}/alumni/${a.id}`; }
 }
