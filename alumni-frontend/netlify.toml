@@ -1,12 +1,11 @@
 [build]
   base = "alumni-frontend"
   command = "npm ci && npx ng build --configuration production"
-  publish = "alumni-frontend/dist/alumni-frontend"
+  publish = "dist/alumni-frontend" # ou "dist/alumni-frontend/browser"
 
 [build.environment]
   NODE_VERSION = "20"
 
-# SPA: router Angular
 [[redirects]]
   from = "/*"
   to = "/index.html"
